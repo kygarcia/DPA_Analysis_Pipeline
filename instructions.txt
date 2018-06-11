@@ -1,0 +1,71 @@
+DPA Analysis Pipeline
+Written by Jeffrey Kugelman
+Edited by Karla Y. Garcia
+Last update June 11, 2018
+
+Description:
+Bioinformatic pipeline that includes various modules for PHAGE Display analysis.
+Modules: Array Description, Input Randomization, Removal of Duplicates, Read Mate Correction,
+Read Cleaning, and Expression Analysis.
+
+Script takes as input paired end data in the format of a fastq and sequence alignments in fasta format.
+
+*When viewing script in editor, set tabs to 2 spaces to represent intended layout
+
+Used Perl Modules:
+Getopt::Long
+Pod::Usage
+Cwd
+Parallel::ForkManager
+POSIX qw/strftime/
+File::Slurp
+File::Copy
+Excel::Writer::XLSX
+Math::NumberCruncher
+GD::Graph::lines
+GD::Graph::bars
+Statistics::TTest
+Statistics::R
+Statistics::ChisqIndep
+List::Util qw(max sum min shuffle)
+
+Other Scripts and Tools:
+dos2unix
+bk_basic.pl (provided)
+bk_wrappers.pl (provided)
+bk_biology.pl (provided)
+ncbi-blast-2.2.28+
+Use: Perl 5.10>=5.10
+
+Setup:
+In PHAGE.pl lines 46-48 assign location of scipts listed above. Replace "PATH/bk_basic.pl" with direct path. 
+In bk_wrappers.pl change the line 11 to match your system:
+$patBla= “PATH”
+
+Input options:
+-help	Brief help message
+-man	Full documentation
+-ver	Version and last revision date
+-sil	Write to terminal (default silent).
+-pat	Path to working directory (default current).
+-cor	Number of cores to use for parallelization (default 1).
+-inp	Input sequence (default all sequences).
+-sli	Slide (default 7)
+-osi	Oligo window (default 36)
+-are	Turn off array creation (default on, 0)
+-cus	Turn on custom array (default off, 0)
+-lib	Turn off library evaluation (default on, 0)
+-exp	Expression threshold (default 1)
+-dup	Duplicate removal (default on, 0)
+-vir	Virus to highlight from array design (default EBOV).
+
+Example:
+In project directory:
+Create _array directory and save a gapped amino acid fasta alignment. (example provided)
+Create a directory per sample and save sample_R1.fastq and sample_R2.fastq.
+Run the following command in project directory.  
+
+perl PHAGE.pl  -300000 -cor 10 -dup
+
+Output:
+Produces a summary in HTML and EXCEL for further analysis.
