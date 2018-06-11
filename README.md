@@ -1,4 +1,4 @@
-# PHAGE
+# DPA Analysis Pipeline
 Written by Jeffrey Kugelman
 Edited by Karla Y. Garcia
 Last update June 11, 2018
